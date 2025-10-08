@@ -1,89 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrix Effect</title>
-    <style>
-        /* Estilo para remover margens e barras de rolagem */
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: #000; /* Fundo preto */
-        }
+    <title>Minha Página</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        /* Estilo para o canvas ocupar toda a tela */
-        #matrix-canvas {
-            display: block;
+    <style>
+        /* CSS para estilizar a página */
+        body {
+            font-family: sans-serif;
+            text-align: center; /* Centraliza todo o texto */
+            margin-top: 50px;
+        }
+        .social-icons a {
+            font-size: 30px; /* Tamanho dos ícones */
+            color: #333; /* Cor dos ícones */
+            margin: 0 15px; /* Espaçamento entre os ícones */
+            text-decoration: none; /* Remove o sublinhado dos links */
+        }
+        .social-icons a:hover {
+            color: #0077b5; /* Cor ao passar o mouse (um azul tipo LinkedIn) */
         }
     </style>
 </head>
 <body>
-    <canvas id="matrix-canvas"></canvas>
 
-    <script>
-        const canvas = document.getElementById('matrix-canvas');
-        const ctx = canvas.getContext('2d');
+    <h1>SEU NOME COMPLETO AQUI</h1>
 
-        // Define a largura e altura do canvas para preencher a tela inteira
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    <p>Esse é meu primeiro site publicado com GitHub Pages 💅</p>
 
-        // Caracteres que serão usados no efeito "chuva"
-        // Incluindo Katakana, letras e números para um visual autêntico
-        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const nums = '0123456789';
-        const alphabet = katakana + latin + nums;
+    <div class="social-icons">
+        <a href="URL_DO_SEU_LINKEDIN" target="_blank">
+            <i class="fa-brands fa-linkedin"></i>
+        </a>
 
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
+        <a href="URL_DO_SEU_INSTAGRAM" target="_blank">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </div>
 
-        // Array para armazenar a posição Y de cada "gota" em cada coluna
-        const rainDrops = [];
-
-        // Inicializa as "gotas" em posições Y aleatórias no topo
-        for (let x = 0; x < columns; x++) {
-            rainDrops[x] = 1;
-        }
-
-        function draw() {
-            // Desenha um retângulo preto semi-transparente sobre o canvas
-            // Isso cria o efeito de "rastro" dos caracteres
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Define a cor e a fonte dos caracteres
-            ctx.fillStyle = '#0F0'; // Verde Matrix
-            ctx.font = fontSize + 'px monospace';
-
-            // Loop através de cada coluna
-            for (let i = 0; i < rainDrops.length; i++) {
-                // Escolhe um caractere aleatório do nosso alfabeto
-                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                // Desenha o caractere na posição x e y
-                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-
-                // Verifica se a "gota" atingiu o final da tela
-                // Adiciona um fator aleatório para resetar a gota, criando um efeito mais dinâmico
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0; // Reseta a posição para o topo
-                }
-
-                // Move a "gota" para baixo
-                rainDrops[i]++;
-            }
-        }
-
-        // Executa a função de desenho a cada 30 milissegundos para criar a animação
-        setInterval(draw, 30);
-
-        // Opcional: ajusta o tamanho do canvas se a janela do navegador for redimensionada
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-    </script>
 </body>
 </html>
